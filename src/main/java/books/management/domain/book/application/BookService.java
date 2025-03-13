@@ -47,6 +47,10 @@ public class BookService {
                 author);
     }
 
+    public void delete(Long id) {
+        bookRepository.deleteById(id);
+    }
+
     private Book findById(Long id) {
         return bookRepository.findById(id)
                 .orElseThrow(EntityNotFoundException::new);
