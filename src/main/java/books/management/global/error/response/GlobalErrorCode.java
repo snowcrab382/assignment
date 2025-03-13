@@ -11,6 +11,8 @@ public enum GlobalErrorCode implements ErrorCode {
     METHOD_ARGUMENT_NOT_VALID(400, "요청 값이 유효하지 않습니다."),
     METHOD_NOT_ALLOWED(405, "허용되지 않은 메소드입니다."),
 
+    AUTHOR_NOT_FOUND(400, "저자를 찾을 수 없습니다."),
+
     BOOK_ISBN_DUPLICATION(400, "이미 존재하는 ISBN입니다."),
     AUTHOR_EMAIL_DUPLICATION(400, "이미 존재하는 이메일입니다."),
     ;
