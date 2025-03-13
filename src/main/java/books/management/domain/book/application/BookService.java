@@ -40,6 +40,13 @@ public class BookService {
         return BookResponseDto.from(book);
     }
 
+    public void updateBookDetails(Long id, BookRequestDto request) {
+        Book book = findById(id);
+        Author author = authorService.findAuthorById(request.getAuthorId());
+        book.update(request.getTitle(), request.getDescription(), request.getIsbn(), request.getPublicationDate(),
+                author);
+    }
+
     private Book findById(Long id) {
         return bookRepository.findById(id)
                 .orElseThrow(EntityNotFoundException::new);

@@ -60,4 +60,12 @@ public class Book {
                 .build();
     }
 
+    public void update(String title, String description, Long isbn, LocalDate publicationDate, Author author) {
+        this.title = title;
+        this.description = description;
+        this.isbn = isbn;
+        this.publicationDate = publicationDate;
+        this.author = author;
+    }
+
 }
