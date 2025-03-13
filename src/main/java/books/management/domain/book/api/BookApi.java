@@ -2,7 +2,10 @@ package books.management.domain.book.api;
 
 import books.management.domain.book.application.BookService;
 import books.management.domain.book.dto.request.BookRequestDto;
+import books.management.domain.book.dto.response.BookResponseDto;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,5 +21,10 @@ public class BookApi {
     @PostMapping
     public void create(@RequestBody BookRequestDto request) {
         bookService.create(request);
+    }
+
+    @GetMapping
+    public List<BookResponseDto> findAll() {
+        return bookService.findAllBooks();
     }
 }

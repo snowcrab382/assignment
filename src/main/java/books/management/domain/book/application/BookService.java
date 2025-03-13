@@ -5,6 +5,8 @@ import books.management.domain.author.domain.Author;
 import books.management.domain.book.dao.BookRepository;
 import books.management.domain.book.domain.Book;
 import books.management.domain.book.dto.request.BookRequestDto;
+import books.management.domain.book.dto.response.BookResponseDto;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,5 +23,13 @@ public class BookService {
         Author author = authorService.findAuthorById(request.getAuthorId());
         Book book = Book.from(request, author);
         bookRepository.save(book);
+    }
+
+    @Transactional(readOnly = true)
+    public List<BookResponseDto> findAllBooks() {
+        List<Book> allBooks = bookRepository.findAll();
+        return allBooks.stream()
+                .map(BookResponseDto::from)
+                .toList();
     }
 }
