@@ -1,6 +1,6 @@
 package books.management.domain.author.domain;
 
-import books.management.domain.Book;
+import books.management.domain.book.domain.Book;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
