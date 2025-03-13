@@ -37,17 +37,17 @@
         - [x] 연관된 도서 처리 정책을 준수하여 저자를 삭제한다.
 
 - [ ] 도서(Book) API를 개발한다.
-    - [ ] 도서 생성 API를 구현한다.
-        - [ ] 도서의 title, description, isbn, publication_date, author_id를 본문에 입력받는다.
+    - [x] 도서 생성 API를 구현한다.
+        - [x] 도서의 title, description, isbn, publication_date, author_id를 본문에 입력받는다.
     - [ ] 도서 목록 조회 API를 구현한다.
-        - [ ] 모든 도서 목록을 반환한다.
+        - [x] 모든 도서 목록을 반환한다.
         - [ ] (선택 사항) 페이지네이션 및 간단한 필터링(출판일 기준 등) 기능을 추가할 수 있다.
-    - [ ] 도서 상세 조회 API를 구현한다.
-        - [ ] 특정 도서의 상세 정보를 반환한다.
-    - [ ] 도서 수정 API를 구현한다.
-        - 도서의 title, description, isbn, publication_date, author_id를 본문에 입력받아 이를 통해 도서 정보를 수정한다.
-    - [ ] 도서 삭제 API를 구현한다.
-        - [ ] 도서는 별도의 삭제 정책 없이 삭제가 가능하다.
+    - [x] 도서 상세 조회 API를 구현한다.
+        - [x] 특정 도서의 상세 정보를 반환한다.
+    - [x] 도서 수정 API를 구현한다.
+        - [x] 도서의 title, description, isbn, publication_date, author_id를 본문에 입력받아 이를 통해 도서 정보를 수정한다.
+    - [x] 도서 삭제 API를 구현한다.
+        - [x] 도서는 별도의 삭제 정책 없이 삭제가 가능하다.
 
 3. 유효성 및 비즈니스 로직
 
