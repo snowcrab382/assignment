@@ -3,6 +3,7 @@ package books.management.domain.author.application;
 import books.management.domain.author.dao.AuthorRepository;
 import books.management.domain.author.domain.Author;
 import books.management.domain.author.dto.request.AuthorRequestDto;
+import books.management.domain.author.dto.response.AuthorResponseDto;
 import books.management.global.error.exception.NonUniqueValueException;
 import books.management.global.error.response.GlobalErrorCode;
 import jakarta.persistence.EntityNotFoundException;
@@ -25,13 +26,17 @@ public class AuthorService {
     }
 
     @Transactional(readOnly = true)
-    public List<Author> findAllAuthor() {
-        return authorRepository.findAll();
+    public List<AuthorResponseDto> findAllAuthor() {
+        List<Author> authors = authorRepository.findAll();
+        return authors.stream()
+                .map(AuthorResponseDto::from)
+                .toList();
     }
 
     @Transactional(readOnly = true)
-    public Author findAuthorById(Long id) {
-        return findById(id);
+    public AuthorResponseDto findAuthorById(Long id) {
+        Author author = findById(id);
+        return AuthorResponseDto.from(author);
     }
 
     public void updateAuthorDetails(Long id, AuthorRequestDto request) {

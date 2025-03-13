@@ -1,8 +1,10 @@
 package books.management.domain.author.api;
 
 import books.management.domain.author.application.AuthorService;
-import books.management.domain.author.domain.Author;
 import books.management.domain.author.dto.request.AuthorRequestDto;
+import books.management.domain.author.dto.response.AuthorResponseDto;
+import books.management.global.common.response.ApiResponse;
+import books.management.global.common.response.ResponseCode;
 import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -23,28 +25,31 @@ public class AuthorApi {
     private final AuthorService authorService;
 
     @PostMapping
-    public void create(@RequestBody @Valid AuthorRequestDto request) {
+    public ApiResponse<Void> create(@RequestBody @Valid AuthorRequestDto request) {
         authorService.create(request);
+        return ApiResponse.of(ResponseCode.CREATED);
     }
 
     @GetMapping
-    public List<Author> findAll() {
-        return authorService.findAllAuthor();
+    public ApiResponse<List<AuthorResponseDto>> findAll() {
+        return ApiResponse.of(ResponseCode.GET, authorService.findAllAuthor());
     }
 
     @GetMapping("/{id}")
-    public Author findById(@PathVariable Long id) {
-        return authorService.findAuthorById(id);
+    public ApiResponse<AuthorResponseDto> findById(@PathVariable Long id) {
+        return ApiResponse.of(ResponseCode.GET, authorService.findAuthorById(id));
     }
 
     @PutMapping("/{id}")
-    public void update(@PathVariable Long id, @RequestBody @Valid AuthorRequestDto request) {
+    public ApiResponse<Void> update(@PathVariable Long id, @RequestBody @Valid AuthorRequestDto request) {
         authorService.updateAuthorDetails(id, request);
+        return ApiResponse.of(ResponseCode.UPDATED);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    public ApiResponse<Void> delete(@PathVariable Long id) {
         authorService.deleteAuthor(id);
+        return ApiResponse.of(ResponseCode.DELETED);
     }
 
 }
