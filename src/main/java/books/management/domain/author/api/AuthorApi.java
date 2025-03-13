@@ -3,6 +3,7 @@ package books.management.domain.author.api;
 import books.management.domain.author.application.AuthorService;
 import books.management.domain.author.domain.Author;
 import books.management.domain.author.dto.request.AuthorRequestDto;
+import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,7 +23,7 @@ public class AuthorApi {
     private final AuthorService authorService;
 
     @PostMapping
-    public void create(@RequestBody AuthorRequestDto request) {
+    public void create(@RequestBody @Valid AuthorRequestDto request) {
         authorService.create(request);
     }
 
@@ -37,7 +38,7 @@ public class AuthorApi {
     }
 
     @PutMapping("/{id}")
-    public void update(@PathVariable Long id, @RequestBody AuthorRequestDto request) {
+    public void update(@PathVariable Long id, @RequestBody @Valid AuthorRequestDto request) {
         authorService.updateAuthorDetails(id, request);
     }
 
