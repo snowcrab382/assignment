@@ -6,9 +6,9 @@ import books.management.domain.book.dao.BookRepository;
 import books.management.domain.book.domain.Book;
 import books.management.domain.book.dto.request.BookRequestDto;
 import books.management.domain.book.dto.response.BookResponseDto;
+import books.management.global.error.exception.EntityNotFoundException;
 import books.management.global.error.exception.NonUniqueValueException;
 import books.management.global.error.response.GlobalErrorCode;
-import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -63,11 +63,11 @@ public class BookService {
 
     private Book findById(Long id) {
         return bookRepository.findById(id)
-                .orElseThrow(EntityNotFoundException::new);
+                .orElseThrow(() -> new EntityNotFoundException(GlobalErrorCode.BOOK_NOT_FOUND));
     }
 
     private Author findAuthorById(Long id) {
         return authorRepository.findById(id)
-                .orElseThrow(EntityNotFoundException::new);
+                .orElseThrow(() -> new EntityNotFoundException(GlobalErrorCode.AUTHOR_NOT_FOUND));
     }
 }
