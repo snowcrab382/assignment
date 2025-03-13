@@ -1,6 +1,7 @@
 package books.management.domain.author.domain;
 
 import books.management.domain.Book;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,7 +32,7 @@ public class Author {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @OneToMany(mappedBy = "author")
+    @OneToMany(mappedBy = "author", orphanRemoval = true, cascade = CascadeType.REMOVE)
     private List<Book> books = new ArrayList<>();
 
     @Builder
