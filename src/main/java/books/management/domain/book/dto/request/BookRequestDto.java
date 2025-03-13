@@ -11,11 +11,11 @@ public class BookRequestDto {
 
     private String title;
     private String description;
-    private Long isbn;
+    private String isbn;
     private LocalDate publicationDate;
     private Long authorId;
 
-    private BookRequestDto(String title, String description, Long isbn, LocalDate publicationDate, Long authorId) {
+    private BookRequestDto(String title, String description, String isbn, LocalDate publicationDate, Long authorId) {
         this.title = title;
         this.description = description;
         this.isbn = isbn;

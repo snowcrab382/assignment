@@ -10,12 +10,12 @@ public class BookResponseDto {
     private Long id;
     private String title;
     private String description;
-    private Long isbn;
+    private String isbn;
     private String publicationDate;
     private Long authorId;
 
     @Builder
-    public BookResponseDto(Long id, String title, String description, Long isbn, String publicationDate,
+    public BookResponseDto(Long id, String title, String description, String isbn, String publicationDate,
                            Long authorId) {
         this.id = id;
         this.title = title;
