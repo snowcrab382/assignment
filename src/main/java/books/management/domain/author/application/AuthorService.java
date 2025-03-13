@@ -4,9 +4,9 @@ import books.management.domain.author.dao.AuthorRepository;
 import books.management.domain.author.domain.Author;
 import books.management.domain.author.dto.request.AuthorRequestDto;
 import books.management.domain.author.dto.response.AuthorResponseDto;
+import books.management.global.error.exception.EntityNotFoundException;
 import books.management.global.error.exception.NonUniqueValueException;
 import books.management.global.error.response.GlobalErrorCode;
-import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -40,8 +40,12 @@ public class AuthorService {
     }
 
     public void updateAuthorDetails(Long id, AuthorRequestDto request) {
-        validateEmail(request.getEmail());
         Author author = findById(id);
+
+        if (!author.getEmail().equals(request.getEmail())) {
+            validateEmail(request.getEmail());
+        }
+
         author.update(request.getName(), request.getEmail());
     }
 
@@ -50,7 +54,8 @@ public class AuthorService {
     }
 
     private Author findById(Long id) {
-        return authorRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+        return authorRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(GlobalErrorCode.AUTHOR_NOT_FOUND));
     }
 
     private void validateEmail(String email) {

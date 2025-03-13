@@ -6,6 +6,7 @@ import books.management.global.error.response.ErrorResponse;
 import books.management.global.error.response.ErrorResponse.FieldError;
 import books.management.global.error.response.GlobalErrorCode;
 import java.util.List;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -18,6 +19,11 @@ public class GlobalExceptionHandler {
     protected ErrorResponse handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
         List<FieldError> fieldErrors = FieldError.of(e.getBindingResult());
         return ErrorResponse.of(GlobalErrorCode.METHOD_ARGUMENT_NOT_VALID, fieldErrors);
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    protected ErrorResponse handleHttpMessageNotReadableException(HttpMessageNotReadableException e) {
+        return ErrorResponse.of(GlobalErrorCode.HTTP_MESSAGE_NOT_READABLE);
     }
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
