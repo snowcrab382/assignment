@@ -6,12 +6,12 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class AuthorCreateRequest {
+public class AuthorRequestDto {
 
     private String name;
     private String email;
 
-    public AuthorCreateRequest(String name, String email) {
+    public AuthorRequestDto(String name, String email) {
         this.name = name;
         this.email = email;
     }

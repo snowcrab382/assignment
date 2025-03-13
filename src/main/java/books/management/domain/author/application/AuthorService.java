@@ -2,7 +2,7 @@ package books.management.domain.author.application;
 
 import books.management.domain.author.dao.AuthorRepository;
 import books.management.domain.author.domain.Author;
-import books.management.domain.author.dto.request.AuthorCreateRequest;
+import books.management.domain.author.dto.request.AuthorRequestDto;
 import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +16,7 @@ public class AuthorService {
 
     private final AuthorRepository authorRepository;
 
-    public void create(AuthorCreateRequest request) {
+    public void create(AuthorRequestDto request) {
         Author author = Author.of(request.getName(), request.getEmail());
         authorRepository.save(author);
     }
@@ -29,6 +29,11 @@ public class AuthorService {
     @Transactional(readOnly = true)
     public Author findAuthorById(Long id) {
         return findById(id);
+    }
+
+    public void updateAuthorDetails(Long id, AuthorRequestDto request) {
+        Author author = findById(id);
+        author.update(request.getName(), request.getEmail());
     }
 
     private Author findById(Long id) {
