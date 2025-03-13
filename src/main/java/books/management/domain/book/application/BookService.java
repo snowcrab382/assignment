@@ -6,6 +6,8 @@ import books.management.domain.book.dao.BookRepository;
 import books.management.domain.book.domain.Book;
 import books.management.domain.book.dto.request.BookRequestDto;
 import books.management.domain.book.dto.response.BookResponseDto;
+import books.management.global.error.exception.NonUniqueValueException;
+import books.management.global.error.response.GlobalErrorCode;
 import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +23,7 @@ public class BookService {
     private final BookRepository bookRepository;
 
     public void create(BookRequestDto request) {
+        validateIsbn(request.getIsbn());
         Author author = authorService.findAuthorById(request.getAuthorId());
         Book book = Book.from(request, author);
         bookRepository.save(book);
@@ -41,6 +44,7 @@ public class BookService {
     }
 
     public void updateBookDetails(Long id, BookRequestDto request) {
+        validateIsbn(request.getIsbn());
         Book book = findById(id);
         Author author = authorService.findAuthorById(request.getAuthorId());
         book.update(request.getTitle(), request.getDescription(), request.getIsbn(), request.getPublicationDate(),
@@ -49,6 +53,12 @@ public class BookService {
 
     public void delete(Long id) {
         bookRepository.deleteById(id);
+    }
+
+    private void validateIsbn(String isbn) {
+        if (bookRepository.existsByIsbn(isbn)) {
+            throw new NonUniqueValueException(GlobalErrorCode.BOOK_ISBN_DUPLICATION);
+        }
     }
 
     private Book findById(Long id) {

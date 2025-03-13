@@ -33,7 +33,7 @@ public class Book {
     private String description;
 
     @Column(nullable = false, unique = true)
-    private Long isbn;
+    private String isbn;
 
     private LocalDate publicationDate;
 
@@ -42,7 +42,7 @@ public class Book {
     private Author author;
 
     @Builder
-    private Book(String title, String description, Long isbn, LocalDate publicationDate, Author author) {
+    private Book(String title, String description, String isbn, LocalDate publicationDate, Author author) {
         this.title = title;
         this.description = description;
         this.isbn = isbn;
@@ -60,7 +60,7 @@ public class Book {
                 .build();
     }
 
-    public void update(String title, String description, Long isbn, LocalDate publicationDate, Author author) {
+    public void update(String title, String description, String isbn, LocalDate publicationDate, Author author) {
         this.title = title;
         this.description = description;
         this.isbn = isbn;

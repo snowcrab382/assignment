@@ -3,6 +3,7 @@ package books.management.domain.book.api;
 import books.management.domain.book.application.BookService;
 import books.management.domain.book.dto.request.BookRequestDto;
 import books.management.domain.book.dto.response.BookResponseDto;
+import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,7 +23,7 @@ public class BookApi {
     private final BookService bookService;
 
     @PostMapping
-    public void create(@RequestBody BookRequestDto request) {
+    public void create(@RequestBody @Valid BookRequestDto request) {
         bookService.create(request);
     }
 
@@ -37,7 +38,7 @@ public class BookApi {
     }
 
     @PutMapping("/{id}")
-    public void update(@PathVariable Long id, @RequestBody BookRequestDto request) {
+    public void update(@PathVariable Long id, @RequestBody @Valid BookRequestDto request) {
         bookService.updateBookDetails(id, request);
     }
 
