@@ -5,6 +5,7 @@ import books.management.domain.author.domain.Author;
 import books.management.domain.author.dto.request.AuthorRequestDto;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,6 +39,11 @@ public class AuthorApi {
     @PutMapping("/{id}")
     public void update(@PathVariable Long id, @RequestBody AuthorRequestDto request) {
         authorService.updateAuthorDetails(id, request);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        authorService.deleteAuthor(id);
     }
 
 }

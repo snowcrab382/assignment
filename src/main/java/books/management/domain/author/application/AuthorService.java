@@ -36,6 +36,10 @@ public class AuthorService {
         author.update(request.getName(), request.getEmail());
     }
 
+    public void deleteAuthor(Long id) {
+        authorRepository.deleteById(id);
+    }
+
     private Author findById(Long id) {
         return authorRepository.findById(id).orElseThrow(EntityNotFoundException::new);
     }
