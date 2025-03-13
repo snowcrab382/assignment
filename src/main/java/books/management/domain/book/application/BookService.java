@@ -44,8 +44,12 @@ public class BookService {
     }
 
     public void updateBookDetails(Long id, BookRequestDto request) {
-        validateIsbn(request.getIsbn());
         Book book = findById(id);
+
+        if (!book.getIsbn().equals(request.getIsbn())) {
+            validateIsbn(request.getIsbn());
+        }
+
         Author author = findAuthorById(request.getAuthorId());
         book.update(request.getTitle(), request.getDescription(), request.getIsbn(), request.getPublicationDate(),
                 author);
