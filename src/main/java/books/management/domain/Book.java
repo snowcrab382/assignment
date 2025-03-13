@@ -1,5 +1,6 @@
 package books.management.domain;
 
+import books.management.domain.author.domain.Author;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
