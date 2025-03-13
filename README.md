@@ -69,8 +69,8 @@
 
 4. API 문서 작성
 
-- [ ] Swagger를 활용하여 API 문서를 작성한다.
-- [ ] Swagger UI 통해 API 문서를 확인할 수 있어야 한다.
+- [x] Swagger를 활용하여 API 문서를 작성한다.
+- [x] Swagger UI 통해 API 문서를 확인할 수 있어야 한다.
 
 5. 추가 선택 사항
 
