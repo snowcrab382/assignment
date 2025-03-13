@@ -40,8 +40,12 @@ public class AuthorService {
     }
 
     public void updateAuthorDetails(Long id, AuthorRequestDto request) {
-        validateEmail(request.getEmail());
         Author author = findById(id);
+
+        if (!author.getEmail().equals(request.getEmail())) {
+            validateEmail(request.getEmail());
+        }
+
         author.update(request.getName(), request.getEmail());
     }
 
