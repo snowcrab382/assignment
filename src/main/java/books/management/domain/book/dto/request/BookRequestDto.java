@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import java.time.LocalDate;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
@@ -29,6 +30,7 @@ public class BookRequestDto {
     @NotNull(message = "저자 ID는 필수 입력 값입니다.")
     private Long authorId;
 
+    @Builder
     private BookRequestDto(String title, String description, String isbn, LocalDate publicationDate, Long authorId) {
         this.title = title;
         this.description = description;
