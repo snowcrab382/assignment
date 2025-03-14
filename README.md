@@ -1,5 +1,32 @@
 # 도서 관리 시스템 CRUD 과제
 
+## 프로젝트 실행 방법
+
+1. 깃허브 저장소를 로컬 환경으로 클론합니다.
+2. 프로젝트의 루트 디렉토리에서 각자의 실행 환경에 따라 아래와 같은 명령어를 실행합니다.
+
+- Maven을 사용하는 경우
+   ```
+   mvn spring-boot:run
+   ```
+- Gradle을 사용하는 경우
+   ```
+   ./gradlew bootRun
+   ```
+- IDE를 사용하는 경우
+    - IDE에서 `BookManagementApplication` 클래스를 실행
+
+3. 성공적으로 프로젝트가 실행되었다면, 브라우저를 통해 h2 database 또는 Swagger-UI에 접속할 수 있습니다.
+4. h2 database에 접속하려면 아래와 같은 URL를 사용합니다.
+
+    ```
+    http://localhost:8080/h2-console
+    ```
+
+    - JDBC URL: `jdbc:h2:mem:library`
+    - User Name: `sa`
+    - Password: ``
+
 ## 과제 요구사항
 
 1. 데이터 모델링
@@ -74,4 +101,4 @@
 
 5. 추가 선택 사항
 
-- [ ] 테스트 코드를 작성한다.
+- [x] 테스트 코드를 작성한다.
